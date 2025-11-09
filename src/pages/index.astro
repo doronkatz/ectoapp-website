@@ -1,19 +1,351 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
+import logoIcon from '../assets/Logo-icon.png';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
+const heroStats = [
+  { label: 'Creators on the list', value: '320+' },
+  { label: 'Average reply time', value: '<12 hrs' },
+  { label: 'Seats per cohort', value: '25' },
+];
 
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const snapshotPoints = [
+  'Check drafts, stats, and comments from any device.',
+  'Push updates straight to your Ghost site without opening a laptop.',
+  'Keep investors and collaborators aligned with share-ready cards.',
+];
+
+const featureCards = [
+  {
+    title: 'Instant post sync',
+    copy: 'Edit titles, tags, and excerpts, then publish to Ghost in seconds with built-in safeguards.',
+  },
+  {
+    title: 'Audience pulse',
+    copy: 'Glanceable dashboards highlight top members, churn risk, and campaign performance.',
+  },
+  {
+    title: 'Team-friendly approvals',
+    copy: 'Lightweight review requests keep editors in the loop without long email chains.',
+  },
+];
+
+const workflowSteps = [
+  {
+    step: '01',
+    title: 'Capture the spark',
+    copy: 'Jot ideas or drop audio notes while you are away from your desk. Everything syncs to Ghost drafts automatically.',
+  },
+  {
+    step: '02',
+    title: 'Polish and preview',
+    copy: 'Apply your publication styles, run quick checks, and share a preview link for edits or approvals.',
+  },
+  {
+    step: '03',
+    title: 'Publish with confidence',
+    copy: 'Ship the story, send members a note, and watch live insights update without refreshing a dashboard.',
+  },
+];
+
+const primerPoints = [
+  'Ghost is an open-source publishing platform built for newsletters and modern media brands.',
+  'Creators host their sites on Ghost to own their audience, subscriptions, and data.',
+  'Ghost App lets you manage that entire stack from your phone or tablet.',
+];
+
+const trustSignals = [
+  'Used by indie publishers worldwide',
+  'Built with Ghost’s official APIs',
+  'Manual onboarding for every cohort',
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Ghost App | Modern beta storytelling">
+  <section id="hero" class="grid gap-10 pb-16 pt-6 text-white lg:grid-cols-[1.1fr_minmax(0,0.9fr)]">
+    <div class="space-y-6">
+      <span class="tag">Private beta now recruiting</span>
+      <h1 class="text-4xl font-semibold leading-tight sm:text-5xl">
+        Manage your Ghost publication anywhere with Ghost App.
+      </h1>
+      <p class="text-lg text-white/80 sm:text-xl">
+        Draft, review, and publish posts without opening a laptop. Ghost App brings real-time stats, audience signals, and approvals into a minimalist mobile workspace.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#waitlist" class="btn btn-lg sm:min-w-48">Join the beta</a>
+        <a href="#ghost-primer" class="inline-flex items-center gap-2 font-semibold text-white/80 transition hover:text-white">
+          New to Ghost? Start here →
+        </a>
+      </div>
+      <div class="grid gap-6 pt-4 text-sm uppercase tracking-wide text-white/70 sm:grid-cols-3">
+        {heroStats.map((stat) => (
+          <div class="space-y-1">
+            <p class="text-2xl font-bold text-white">{stat.value}</p>
+            <p class="text-xs tracking-[0.3em] text-white/60">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="relative">
+      <div class="absolute -inset-6 rounded-[2.75rem] bg-gradient-to-br from-primary/40 via-white/10 to-primary/20 blur-3xl"></div>
+      <div class="surface-card relative overflow-hidden bg-gradient-to-b from-white/10 to-white/0">
+        <div class="flex items-center gap-4 rounded-2xl border border-white/15 bg-white/5 p-4">
+          <img
+            src={logoIcon.src}
+            alt="Ghost App icon"
+            width={logoIcon.width}
+            height={logoIcon.height}
+            loading="lazy"
+            class="h-14 w-14 rounded-2xl bg-white/10 p-2"
+          />
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Live space</p>
+            <p class="text-lg font-semibold">Ghost App Snapshot</p>
+          </div>
+        </div>
+        <div class="mt-8 space-y-5 text-sm">
+          <div class="rounded-2xl border border-white/15 bg-gradient-to-br from-primary/30 to-white/5 p-5">
+            <div class="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/60">
+              <span>Currently editing</span>
+              <span>Draft · Issue #42</span>
+            </div>
+            <p class="mt-3 text-base font-semibold text-white">Ghost Weekly · \"Ship faster with cohorts\"</p>
+            <ul class="mt-3 space-y-2 text-white/80">
+              <li class="flex items-center gap-3">
+                <span class="h-1.5 w-1.5 rounded-full bg-white"></span>
+                <span>Headline updated · Mobile push ready</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="h-1.5 w-1.5 rounded-full bg-white"></span>
+                <span>Editor feedback resolved</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="h-1.5 w-1.5 rounded-full bg-white"></span>
+                <span>Newsletter preview link shared</span>
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-2xl border border-white/15 bg-white/5 p-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs uppercase tracking-[0.3em] text-white/60">Mood</p>
+                <p class="text-base font-semibold text-white">Glowingly positive</p>
+              </div>
+              <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white">18 live reactions</span>
+            </div>
+            <p class="mt-3 text-white/70">Auto-summarized sentiment keeps you ahead of member vibes.</p>
+          </div>
+        </div>
+        <div class="mt-8 rounded-2xl border border-white/15 bg-white/10 p-5 text-sm">
+          <p class="text-xs uppercase tracking-[0.3em] text-white/60">Broadcast</p>
+          <div class="mt-2 flex items-center justify-between">
+            <p class="text-base font-semibold text-white">Next digest</p>
+            <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/80">Auto</span>
+          </div>
+          <p class="mt-2 text-white/70">Share this link with contributors or investors to keep them in the loop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="snapshot" class="space-y-10 py-16">
+    <div class="space-y-4">
+      <span class="tag">Ghost App snapshot</span>
+      <h2 class="text-3xl sm:text-4xl">One mobile canvas for creators, editors, and investors.</h2>
+      <p class="text-lg text-white/75 sm:max-w-3xl">
+        Give visitors a quick read on what Ghost App does before they dive deeper. Swap in your own metrics and visuals later.
+      </p>
+    </div>
+    <div class="grid gap-8 lg:grid-cols-[1.15fr_minmax(0,0.85fr)]">
+      <div class="space-y-6 text-white/80">
+        {snapshotPoints.map((point) => (
+          <div class="flex items-start gap-3 text-base">
+            <span class="mt-1 h-2 w-2 rounded-full bg-primary shadow shadow-primary/40"></span>
+            <p>{point}</p>
+          </div>
+        ))}
+        <div class="grid gap-4 pt-4 sm:grid-cols-3">
+          <div class="rounded-2xl border border-white/15 p-4">
+            <p class="text-3xl font-semibold text-white">2x</p>
+            <p class="text-xs uppercase tracking-[0.3em] text-white/60">Faster draft turnaround</p>
+          </div>
+          <div class="rounded-2xl border border-white/15 p-4">
+            <p class="text-3xl font-semibold text-white">94%</p>
+            <p class="text-xs uppercase tracking-[0.3em] text-white/60">Beta satisfaction</p>
+          </div>
+          <div class="rounded-2xl border border-white/15 p-4">
+            <p class="text-3xl font-semibold text-white">0</p>
+            <p class="text-xs uppercase tracking-[0.3em] text-white/60">Laptop required</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-6 rounded-[2.75rem] bg-gradient-to-br from-primary/30 via-white/10 to-primary/10 blur-3xl"></div>
+        <div class="surface-card relative h-full w-full rounded-[2.75rem] border border-white/10 bg-gradient-to-b from-white/10 to-transparent p-8">
+          <p class="text-xs uppercase tracking-[0.3em] text-white/60">Live view</p>
+          <h3 class="mt-3 text-2xl font-semibold text-white">Ghost App dashboard</h3>
+          <p class="mt-2 text-white/75">Activity feed, draft health, and audience signals in one glance.</p>
+          <div class="mt-8 space-y-4">
+            <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
+              <p class="text-sm uppercase tracking-[0.3em] text-white/60">Drafts</p>
+              <p class="text-lg font-semibold text-white">5 ready · 2 needs review</p>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
+              <p class="text-sm uppercase tracking-[0.3em] text-white/60">Members</p>
+              <p class="text-lg font-semibold text-white">12 new · +4% MRR</p>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
+              <p class="text-sm uppercase tracking-[0.3em] text-white/60">Signals</p>
+              <p class="text-lg font-semibold text-white">9 comments awaiting follow-up</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ghost-primer" class="space-y-8 py-16">
+    <div class="surface-card space-y-6 bg-gradient-to-b from-white/10 to-transparent">
+      <span class="tag">Ghost primer</span>
+      <div class="space-y-4 text-white/80">
+        <h2 class="text-3xl sm:text-4xl text-white">What is Ghost, and why build on it?</h2>
+        <p class="text-lg">
+          Ghost is the publishing platform powering modern newsletters, paid memberships, and independent media brands. Ghost App brings that ecosystem to your pocket.
+        </p>
+      </div>
+      <div class="space-y-3">
+        {primerPoints.map((point) => (
+          <div class="flex items-start gap-3 text-base text-white/80">
+            <span class="mt-1 h-2 w-2 rounded-full bg-primary shadow shadow-primary/40"></span>
+            <p>{point}</p>
+          </div>
+        ))}
+      </div>
+      <a
+        href="https://ghost.org"
+        target="_blank"
+        rel="noreferrer"
+        class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80"
+      >
+        Explore ghost.org →
+      </a>
+    </div>
+  </section>
+
+  <section id="features" class="space-y-10 py-16">
+    <div class="space-y-4">
+      <span class="tag">Highlights</span>
+      <h2 class="text-3xl sm:text-4xl">Minimalist interface, modern workflows.</h2>
+      <p class="text-lg text-white/75 sm:max-w-3xl">
+        Keep the copy to a couple of sentences so readers understand the value without scrolling forever.
+      </p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      {featureCards.map((feature) => (
+        <article class="surface-card h-full bg-gradient-to-b from-white/10 to-transparent">
+          <h3 class="text-2xl font-semibold text-white">{feature.title}</h3>
+          <p class="mt-3 text-base text-white/80">{feature.copy}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="workflow" class="space-y-10 py-16">
+    <div class="space-y-4">
+      <span class="tag">Creator workflow</span>
+      <h2 class="text-3xl sm:text-4xl">From idea to shipped post in three beats.</h2>
+      <p class="text-lg text-white/75 sm:max-w-3xl">
+        Give future beta users confidence that Ghost App mirrors the way they already work.
+      </p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      {workflowSteps.map((step) => (
+        <article class="surface-card h-full">
+          <p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Step {step.step}</p>
+          <h3 class="mt-4 text-xl font-semibold text-white">{step.title}</h3>
+          <p class="mt-2 text-base text-white/80">{step.copy}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="waitlist" class="py-16">
+    <div class="surface-card p-0 md:grid md:grid-cols-[0.9fr_1.1fr]">
+      <div class="space-y-4 border-b border-white/10 p-8 sm:p-10 md:border-b-0 md:border-r">
+        <span class="tag">Beta waitlist</span>
+        <h2 class="text-3xl sm:text-4xl">We onboard creators in small cohorts.</h2>
+        <p class="text-lg text-white/75">
+          Tell us where you publish, what you need, and we will line up a private walkthrough within two business days.
+        </p>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li>• Concierge email within two business days.</li>
+          <li>• Optional screenshare to tailor Ghost App to your stack.</li>
+          <li>• Feedback notebook shared for the duration of the beta.</li>
+        </ul>
+        <div class="grid gap-4 pt-6 sm:grid-cols-2">
+          {trustSignals.map((signal) => (
+            <div class="rounded-2xl border border-white/15 bg-white/5 p-4 text-sm font-semibold text-white/70">{signal}</div>
+          ))}
+        </div>
+      </div>
+      <form class="grid gap-6 p-8 sm:p-10" action="https://formspree.io/f/mnnoqdjd" method="POST">
+        <input type="hidden" name="source" value="ghostapp-website" />
+        <label class="flex flex-col gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
+          Full name
+          <input
+            type="text"
+            name="name"
+            required
+            autocomplete="name"
+            class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal text-white placeholder:text-white/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/60"
+            placeholder="Alex Product"
+          />
+        </label>
+        <label class="flex flex-col gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
+          Work email
+          <input
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal text-white placeholder:text-white/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/60"
+            placeholder="alex@studio.com"
+          />
+        </label>
+        <label class="flex flex-col gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
+          Company or project name
+          <input
+            type="text"
+            name="company"
+            class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal text-white placeholder:text-white/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/60"
+            placeholder="Ghost Studios"
+          />
+        </label>
+        <label class="md:col-span-2 flex flex-col gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
+          What should we know?
+          <textarea
+            name="message"
+            rows="4"
+            class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal text-white placeholder:text-white/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/60"
+            placeholder="Share goals, timelines, or integrations to prioritize."
+          ></textarea>
+        </label>
+        <div class="flex flex-col gap-3 md:col-span-2 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-sm text-white/70">We reply personally with next steps. No automated drip.</p>
+          <button type="submit" class="btn btn-lg sm:min-w-48">Request beta invite</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <footer class="border-t border-white/10 py-10 text-sm text-white/70">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-white font-semibold">Ghost App</p>
+        <p>Independent companion for Ghost publishers.</p>
+      </div>
+      <div class="flex flex-wrap gap-6">
+        <a href="mailto:hello@ghostapp.dev" class="hover:text-white">Email us</a>
+        <a href="#waitlist" class="hover:text-white">Request beta access</a>
+        <a href="/privacy" class="hover:text-white">Privacy</a>
+      </div>
+    </div>
+  </footer>
 </Layout>
