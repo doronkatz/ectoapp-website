@@ -1,29 +1,19 @@
 ---
 import Logo from '../components/Logo.astro';
-
-const navItems = [
-    { linkText: 'Product', href: '#product' },
-    { linkText: 'Platform', href: '#platform' },
-    { linkText: 'Waitlist', href: '#waitlist' },
-    { linkText: 'FAQs', href: '#faqs' }
-];
+import XLogo from '../components/XLogo.astro';
 ---
 
 <nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
     <a href="/">
         <Logo />
     </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
+    <a
+        href="https://twitter.com/ghostBlogApp"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Follow @ghostBlogApp on X"
+        class="inline-flex items-center justify-center rounded-full border border-white/20 p-2 text-white/80 transition hover:text-white no-underline"
+    >
+        <XLogo class="h-5 w-5" />
+    </a>
 </nav>

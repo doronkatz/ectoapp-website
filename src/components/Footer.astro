@@ -1,9 +1,22 @@
 ---
-
+import XLogo from '../components/XLogo.astro';
 ---
 
 <footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
     <p class="text-sm">
         <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8"> Astro on Netlify </a>
+    </p>
+    <p class="pt-4 text-sm text-white/80">
+        Follow us on
+        <a
+            href="https://twitter.com/ghostBlogApp"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open @ghostBlogApp on X"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 p-1.5 text-white transition hover:text-primary no-underline align-middle"
+        >
+            <XLogo class="h-4 w-4" />
+        </a>
+        for release notes and support.
     </p>
 </footer>

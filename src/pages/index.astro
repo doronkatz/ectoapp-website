@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import logoIcon from '../assets/Logo-icon.png';
+import XLogo from '../components/XLogo.astro';
+import heroScreenshot from '../assets/Screenshot-1-Tilt.png';
+import snapshotScreenshot from '../assets/Screenshot-2-Tilt.png';
 
 const heroStats = [
   { label: 'Creators on the list', value: '320+' },
@@ -14,39 +16,6 @@ const snapshotPoints = [
   'Keep investors and collaborators aligned with share-ready cards.',
 ];
 
-const featureCards = [
-  {
-    title: 'Instant post sync',
-    copy: 'Edit titles, tags, and excerpts, then publish to Ghost in seconds with built-in safeguards.',
-  },
-  {
-    title: 'Audience pulse',
-    copy: 'Glanceable dashboards highlight top members, churn risk, and campaign performance.',
-  },
-  {
-    title: 'Team-friendly approvals',
-    copy: 'Lightweight review requests keep editors in the loop without long email chains.',
-  },
-];
-
-const workflowSteps = [
-  {
-    step: '01',
-    title: 'Capture the spark',
-    copy: 'Jot ideas or drop audio notes while you are away from your desk. Everything syncs to Ghost drafts automatically.',
-  },
-  {
-    step: '02',
-    title: 'Polish and preview',
-    copy: 'Apply your publication styles, run quick checks, and share a preview link for edits or approvals.',
-  },
-  {
-    step: '03',
-    title: 'Publish with confidence',
-    copy: 'Ship the story, send members a note, and watch live insights update without refreshing a dashboard.',
-  },
-];
-
 const primerPoints = [
   'Ghost is an open-source publishing platform built for newsletters and modern media brands.',
   'Creators host their sites on Ghost to own their audience, subscriptions, and data.',
@@ -58,6 +27,45 @@ const trustSignals = [
   'Built with Ghost’s official APIs',
   'Manual onboarding for every cohort',
 ];
+
+interface XPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  link: string;
+  dateLabel: string;
+}
+
+const X_HANDLE = 'ghostBlogApp';
+const X_HANDLE_DISPLAY = `@${X_HANDLE}`;
+const X_PROFILE_URL = `https://twitter.com/${X_HANDLE}`;
+const X_FEED_ENDPOINT = '/api/x-feed.json';
+
+const fallbackXPosts: XPost[] = [
+  {
+    id: 'fallback-1',
+    title: 'Shipping threads, beta wins, and Ghost tips land on X first.',
+    excerpt: 'Follow @ghostBlogApp to catch behind-the-scenes updates while we build the mobile companion.',
+    link: X_PROFILE_URL,
+    dateLabel: 'Live feed',
+  },
+  {
+    id: 'fallback-2',
+    title: 'Release notes and roadmap chatter in one feed.',
+    excerpt: 'We post cohort announcements, feature drops, and integration news on X as they roll out.',
+    link: X_PROFILE_URL,
+    dateLabel: 'Live feed',
+  },
+  {
+    id: 'fallback-3',
+    title: 'Have a question? DM @ghostBlogApp on X.',
+    excerpt: 'Reach out for onboarding help, roadmap context, or to share your Ghost setup.',
+    link: X_PROFILE_URL,
+    dateLabel: 'Live feed',
+  },
+];
+
+const xPosts = fallbackXPosts;
 ---
 
 <Layout title="Ghost App | Modern beta storytelling">
@@ -76,6 +84,13 @@ const trustSignals = [
           New to Ghost? Start here →
         </a>
       </div>
+      <p class="text-sm text-white/70">
+        Follow
+        <a href={X_PROFILE_URL} target="_blank" rel="noreferrer" class="font-semibold text-white hover:text-primary">
+          @ghostBlogApp
+        </a>
+        on X (Twitter) for beta updates and feature drops.
+      </p>
       <div class="grid gap-6 pt-4 text-sm uppercase tracking-wide text-white/70 sm:grid-cols-3">
         {heroStats.map((stat) => (
           <div class="space-y-1">
@@ -87,62 +102,15 @@ const trustSignals = [
     </div>
     <div class="relative">
       <div class="absolute -inset-6 rounded-[2.75rem] bg-gradient-to-br from-primary/40 via-white/10 to-primary/20 blur-3xl"></div>
-      <div class="surface-card relative overflow-hidden bg-gradient-to-b from-white/10 to-white/0">
-        <div class="flex items-center gap-4 rounded-2xl border border-white/15 bg-white/5 p-4">
-          <img
-            src={logoIcon.src}
-            alt="Ghost App icon"
-            width={logoIcon.width}
-            height={logoIcon.height}
-            loading="lazy"
-            class="h-14 w-14 rounded-2xl bg-white/10 p-2"
-          />
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Live space</p>
-            <p class="text-lg font-semibold">Ghost App Snapshot</p>
-          </div>
-        </div>
-        <div class="mt-8 space-y-5 text-sm">
-          <div class="rounded-2xl border border-white/15 bg-gradient-to-br from-primary/30 to-white/5 p-5">
-            <div class="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/60">
-              <span>Currently editing</span>
-              <span>Draft · Issue #42</span>
-            </div>
-            <p class="mt-3 text-base font-semibold text-white">Ghost Weekly · \"Ship faster with cohorts\"</p>
-            <ul class="mt-3 space-y-2 text-white/80">
-              <li class="flex items-center gap-3">
-                <span class="h-1.5 w-1.5 rounded-full bg-white"></span>
-                <span>Headline updated · Mobile push ready</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="h-1.5 w-1.5 rounded-full bg-white"></span>
-                <span>Editor feedback resolved</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="h-1.5 w-1.5 rounded-full bg-white"></span>
-                <span>Newsletter preview link shared</span>
-              </li>
-            </ul>
-          </div>
-          <div class="rounded-2xl border border-white/15 bg-white/5 p-5">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-xs uppercase tracking-[0.3em] text-white/60">Mood</p>
-                <p class="text-base font-semibold text-white">Glowingly positive</p>
-              </div>
-              <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white">18 live reactions</span>
-            </div>
-            <p class="mt-3 text-white/70">Auto-summarized sentiment keeps you ahead of member vibes.</p>
-          </div>
-        </div>
-        <div class="mt-8 rounded-2xl border border-white/15 bg-white/10 p-5 text-sm">
-          <p class="text-xs uppercase tracking-[0.3em] text-white/60">Broadcast</p>
-          <div class="mt-2 flex items-center justify-between">
-            <p class="text-base font-semibold text-white">Next digest</p>
-            <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white/80">Auto</span>
-          </div>
-          <p class="mt-2 text-white/70">Share this link with contributors or investors to keep them in the loop.</p>
-        </div>
+      <div class="surface-card relative flex items-center justify-center overflow-hidden rounded-[2.75rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/0 p-8">
+        <img
+          src={heroScreenshot.src}
+          alt="Ghost App mobile workspace preview"
+          width={heroScreenshot.width}
+          height={heroScreenshot.height}
+          loading="lazy"
+          class="max-h-[640px] w-full max-w-sm object-contain drop-shadow-[0_25px_80px_rgba(0,0,0,0.35)]"
+        />
       </div>
     </div>
   </section>
@@ -155,52 +123,87 @@ const trustSignals = [
       </p>
     </div>
     <div class="grid gap-8 lg:grid-cols-[1.15fr_minmax(0,0.85fr)]">
-      <div class="space-y-6 text-white/80">
-        {snapshotPoints.map((point) => (
-          <div class="flex items-start gap-3 text-base">
-            <span class="mt-1 h-2 w-2 rounded-full bg-primary shadow shadow-primary/40"></span>
-            <p>{point}</p>
+      <div class="space-y-10">
+        <div class="space-y-6 text-white/80">
+          {snapshotPoints.map((point) => (
+            <div class="flex items-start gap-3 text-base">
+              <span class="mt-1 h-2 w-2 rounded-full bg-primary shadow shadow-primary/40"></span>
+              <p>{point}</p>
+            </div>
+          ))}
+          <div class="grid gap-4 pt-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-white/15 p-4">
+              <p class="text-3xl font-semibold text-white">2x</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-white/60">Faster draft turnaround</p>
+            </div>
+            <div class="rounded-2xl border border-white/15 p-4">
+              <p class="text-3xl font-semibold text-white">94%</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-white/60">Beta satisfaction</p>
+            </div>
+            <div class="rounded-2xl border border-white/15 p-4">
+              <p class="text-3xl font-semibold text-white">0</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-white/60">Laptop required</p>
+            </div>
           </div>
-        ))}
-        <div class="grid gap-4 pt-4 sm:grid-cols-3">
-          <div class="rounded-2xl border border-white/15 p-4">
-            <p class="text-3xl font-semibold text-white">2x</p>
-            <p class="text-xs uppercase tracking-[0.3em] text-white/60">Faster draft turnaround</p>
+        </div>
+        <div id="waitlist" class="surface-card space-y-6 bg-gradient-to-b from-white/10 to-transparent p-8 sm:p-10">
+          <div class="space-y-4">
+            <span class="tag">Beta waitlist</span>
+            <h3 class="text-2xl sm:text-3xl text-white">Sign up to be on the waiting list</h3>
+            <p class="text-base text-white/75">
+              Put your name and Apple ID email address below, and we will send you a TestFlight beta when we are ready. We won't use your email
+              address for anything else, or share your email address with anyone.
+            </p>
           </div>
-          <div class="rounded-2xl border border-white/15 p-4">
-            <p class="text-3xl font-semibold text-white">94%</p>
-            <p class="text-xs uppercase tracking-[0.3em] text-white/60">Beta satisfaction</p>
-          </div>
-          <div class="rounded-2xl border border-white/15 p-4">
-            <p class="text-3xl font-semibold text-white">0</p>
-            <p class="text-xs uppercase tracking-[0.3em] text-white/60">Laptop required</p>
-          </div>
+
+          <form
+            id="waitlist-form"
+            action="https://formspree.io/f/mnnoqdjd"
+            method="POST"
+            class="space-y-4"
+          >
+            <div class="space-y-2">
+              <label for="waitlist-name" class="text-sm font-semibold text-white">Name</label>
+              <input
+                id="waitlist-name"
+                name="name"
+                type="text"
+                required
+                placeholder="Ada Lovelace"
+                class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-white/40 focus:border-primary focus:outline-none focus:ring-0"
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="waitlist-email" class="text-sm font-semibold text-white">Apple ID email</label>
+              <input
+                id="waitlist-email"
+                name="email"
+                type="email"
+                required
+                placeholder="you@example.com"
+                class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-white/40 focus:border-primary focus:outline-none focus:ring-0"
+              />
+            </div>
+            <button type="submit" class="btn btn-lg w-full sm:w-auto">Request TestFlight beta</button>
+            <p class="text-sm text-white/70" data-form-status role="status"></p>
+          </form>
         </div>
       </div>
       <div class="relative">
-        <div class="absolute -inset-6 rounded-[2.75rem] bg-gradient-to-br from-primary/30 via-white/10 to-primary/10 blur-3xl"></div>
-        <div class="surface-card relative h-full w-full rounded-[2.75rem] border border-white/10 bg-gradient-to-b from-white/10 to-transparent p-8">
-          <p class="text-xs uppercase tracking-[0.3em] text-white/60">Live view</p>
-          <h3 class="mt-3 text-2xl font-semibold text-white">Ghost App dashboard</h3>
-          <p class="mt-2 text-white/75">Activity feed, draft health, and audience signals in one glance.</p>
-          <div class="mt-8 space-y-4">
-            <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
-              <p class="text-sm uppercase tracking-[0.3em] text-white/60">Drafts</p>
-              <p class="text-lg font-semibold text-white">5 ready · 2 needs review</p>
-            </div>
-            <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
-              <p class="text-sm uppercase tracking-[0.3em] text-white/60">Members</p>
-              <p class="text-lg font-semibold text-white">12 new · +4% MRR</p>
-            </div>
-            <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
-              <p class="text-sm uppercase tracking-[0.3em] text-white/60">Signals</p>
-              <p class="text-lg font-semibold text-white">9 comments awaiting follow-up</p>
-            </div>
-          </div>
+        <div class="surface-card relative flex h-full w-full items-center justify-center overflow-hidden rounded-[2.75rem] border border-white/10 bg-white/5 p-4 sm:p-6">
+          <img
+            src={snapshotScreenshot.src}
+            alt="Ghost App mobile dashboard"
+            width={snapshotScreenshot.width}
+            height={snapshotScreenshot.height}
+            loading="lazy"
+            class="w-full max-w-sm object-contain drop-shadow-[0_25px_80px_rgba(0,0,0,0.35)] max-h-[420px]"
+          />
         </div>
       </div>
     </div>
   </section>
+
 
   <section id="ghost-primer" class="space-y-8 py-16">
     <div class="surface-card space-y-6 bg-gradient-to-b from-white/10 to-transparent">
@@ -230,111 +233,6 @@ const trustSignals = [
     </div>
   </section>
 
-  <section id="features" class="space-y-10 py-16">
-    <div class="space-y-4">
-      <span class="tag">Highlights</span>
-      <h2 class="text-3xl sm:text-4xl">Minimalist interface, modern workflows.</h2>
-      <p class="text-lg text-white/75 sm:max-w-3xl">
-        Keep the copy to a couple of sentences so readers understand the value without scrolling forever.
-      </p>
-    </div>
-    <div class="grid gap-6 md:grid-cols-3">
-      {featureCards.map((feature) => (
-        <article class="surface-card h-full bg-gradient-to-b from-white/10 to-transparent">
-          <h3 class="text-2xl font-semibold text-white">{feature.title}</h3>
-          <p class="mt-3 text-base text-white/80">{feature.copy}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section id="workflow" class="space-y-10 py-16">
-    <div class="space-y-4">
-      <span class="tag">Creator workflow</span>
-      <h2 class="text-3xl sm:text-4xl">From idea to shipped post in three beats.</h2>
-      <p class="text-lg text-white/75 sm:max-w-3xl">
-        Give future beta users confidence that Ghost App mirrors the way they already work.
-      </p>
-    </div>
-    <div class="grid gap-6 md:grid-cols-3">
-      {workflowSteps.map((step) => (
-        <article class="surface-card h-full">
-          <p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Step {step.step}</p>
-          <h3 class="mt-4 text-xl font-semibold text-white">{step.title}</h3>
-          <p class="mt-2 text-base text-white/80">{step.copy}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section id="waitlist" class="py-16">
-    <div class="surface-card p-0 md:grid md:grid-cols-[0.9fr_1.1fr]">
-      <div class="space-y-4 border-b border-white/10 p-8 sm:p-10 md:border-b-0 md:border-r">
-        <span class="tag">Beta waitlist</span>
-        <h2 class="text-3xl sm:text-4xl">We onboard creators in small cohorts.</h2>
-        <p class="text-lg text-white/75">
-          Tell us where you publish, what you need, and we will line up a private walkthrough within two business days.
-        </p>
-        <ul class="space-y-2 text-sm text-white/70">
-          <li>• Concierge email within two business days.</li>
-          <li>• Optional screenshare to tailor Ghost App to your stack.</li>
-          <li>• Feedback notebook shared for the duration of the beta.</li>
-        </ul>
-        <div class="grid gap-4 pt-6 sm:grid-cols-2">
-          {trustSignals.map((signal) => (
-            <div class="rounded-2xl border border-white/15 bg-white/5 p-4 text-sm font-semibold text-white/70">{signal}</div>
-          ))}
-        </div>
-      </div>
-      <form class="grid gap-6 p-8 sm:p-10" action="https://formspree.io/f/mnnoqdjd" method="POST">
-        <input type="hidden" name="source" value="ghostapp-website" />
-        <label class="flex flex-col gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
-          Full name
-          <input
-            type="text"
-            name="name"
-            required
-            autocomplete="name"
-            class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal text-white placeholder:text-white/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/60"
-            placeholder="Alex Product"
-          />
-        </label>
-        <label class="flex flex-col gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
-          Work email
-          <input
-            type="email"
-            name="email"
-            required
-            autocomplete="email"
-            class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal text-white placeholder:text-white/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/60"
-            placeholder="alex@studio.com"
-          />
-        </label>
-        <label class="flex flex-col gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
-          Company or project name
-          <input
-            type="text"
-            name="company"
-            class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal text-white placeholder:text-white/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/60"
-            placeholder="Ghost Studios"
-          />
-        </label>
-        <label class="md:col-span-2 flex flex-col gap-2 text-sm font-semibold uppercase tracking-wide text-white/80">
-          What should we know?
-          <textarea
-            name="message"
-            rows="4"
-            class="rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-base font-normal text-white placeholder:text-white/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/60"
-            placeholder="Share goals, timelines, or integrations to prioritize."
-          ></textarea>
-        </label>
-        <div class="flex flex-col gap-3 md:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-          <p class="text-sm text-white/70">We reply personally with next steps. No automated drip.</p>
-          <button type="submit" class="btn btn-lg sm:min-w-48">Request beta invite</button>
-        </div>
-      </form>
-    </div>
-  </section>
   <footer class="border-t border-white/10 py-10 text-sm text-white/70">
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
@@ -342,10 +240,179 @@ const trustSignals = [
         <p>Independent companion for Ghost publishers.</p>
       </div>
       <div class="flex flex-wrap gap-6">
-        <a href="mailto:hello@ghostapp.dev" class="hover:text-white">Email us</a>
         <a href="#waitlist" class="hover:text-white">Request beta access</a>
-        <a href="/privacy" class="hover:text-white">Privacy</a>
+        <a
+          href={X_PROFILE_URL}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open @ghostBlogApp on X"
+          class="inline-flex items-center justify-center rounded-full border border-white/20 p-1.5 text-white hover:text-white/80 no-underline"
+        >
+          <XLogo class="h-4 w-4" />
+        </a>
       </div>
     </div>
   </footer>
+
+  <script type="module">
+    const FEED_ENDPOINT = {JSON.stringify(X_FEED_ENDPOINT)};
+    const X_HANDLE_DISPLAY = {JSON.stringify(X_HANDLE_DISPLAY)};
+    const svgNS = 'http://www.w3.org/2000/svg';
+
+    const createXLogo = () => {
+      const svg = document.createElementNS(svgNS, 'svg');
+      svg.setAttribute('class', 'h-4 w-4 text-white');
+      svg.setAttribute('viewBox', '0 0 24 24');
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+
+      const path = document.createElementNS(svgNS, 'path');
+      path.setAttribute('fill', 'currentColor');
+      path.setAttribute('d', 'M1.5 0h5.7l5 7.7L16.8 0h5.7l-8.2 11.1L24 24h-5.7l-5-7.8L7.2 24H1.5l8.4-11.3L1.5 0z');
+      svg.appendChild(path);
+
+      return svg;
+    };
+
+    const createPostCard = (post) => {
+      const article = document.createElement('article');
+      article.className = 'surface-card flex flex-col gap-4 bg-gradient-to-b from-white/10 to-transparent p-6';
+      article.id = post.id;
+
+      const meta = document.createElement('div');
+      meta.className = 'flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/60';
+
+      const handle = document.createElement('span');
+      handle.className = 'inline-flex items-center gap-2 tracking-[0.2em] text-white';
+      handle.appendChild(createXLogo());
+      const handleText = document.createElement('span');
+      handleText.textContent = X_HANDLE_DISPLAY;
+      handle.appendChild(handleText);
+      meta.appendChild(handle);
+
+      if (post.dateLabel) {
+        const time = document.createElement('time');
+        time.className = 'text-white/60';
+        time.textContent = post.dateLabel;
+        meta.appendChild(time);
+      }
+
+      const content = document.createElement('div');
+      content.className = 'space-y-3';
+
+      const title = document.createElement('p');
+      title.className = 'text-xl font-semibold text-white';
+      title.textContent = post.title;
+      const excerpt = document.createElement('p');
+      excerpt.className = 'text-sm text-white/70';
+      excerpt.textContent = post.excerpt;
+      content.append(title, excerpt);
+
+      const link = document.createElement('a');
+      link.className = 'inline-flex w-fit items-center gap-2 text-sm font-semibold text-primary no-underline hover:text-primary/80';
+      link.href = post.link;
+      link.target = '_blank';
+      link.rel = 'noreferrer';
+      link.textContent = 'Read on X →';
+
+      article.append(meta, content, link);
+      return article;
+    };
+
+    const renderLatestFromX = (container, posts) => {
+      if (!Array.isArray(posts) || !posts.length) {
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+      posts.forEach((post) => {
+        if (!post || !post.link) {
+          return;
+        }
+        fragment.appendChild(createPostCard(post));
+      });
+
+      if (!fragment.childNodes.length) {
+        return;
+      }
+
+      container.innerHTML = '';
+      container.appendChild(fragment);
+    };
+
+    const initLatestFromX = async () => {
+      const container = document.querySelector('[data-x-feed]');
+      if (!container) {
+        return;
+      }
+
+      try {
+        const endpoint = container.dataset.feedEndpoint || FEED_ENDPOINT;
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const payload = await response.json();
+        renderLatestFromX(container, payload?.posts);
+      } catch (error) {
+        console.error('Failed to load Latest from X posts', error);
+      }
+    };
+
+    const initWaitlistForm = () => {
+      const form = document.querySelector('#waitlist-form');
+      if (!form) {
+        return;
+      }
+
+      const status = form.querySelector('[data-form-status]');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        if (status) {
+          status.textContent = 'Sending…';
+        }
+
+        try {
+          const response = await fetch(form.action, {
+            method: form.method || 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' },
+          });
+
+          if (response.ok) {
+            if (status) {
+              status.textContent = 'Thanks! We will be in touch soon.';
+            }
+            form.reset();
+            return;
+          }
+
+          let message = 'Oops! There was a problem submitting your form.';
+          try {
+            const data = await response.json();
+            if (Array.isArray(data?.errors) && data.errors.length) {
+              message = data.errors.map((error) => error.message).join(', ');
+            }
+          } catch (parseError) {
+            // ignore JSON parse errors
+          }
+
+          if (status) {
+            status.textContent = message;
+          }
+        } catch (requestError) {
+          if (status) {
+            status.textContent = 'Oops! There was a problem submitting your form.';
+          }
+        }
+      });
+    };
+
+    initLatestFromX();
+    initWaitlistForm();
+  </script>
 </Layout>
