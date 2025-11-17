@@ -69,17 +69,23 @@ const xPosts = fallbackXPosts;
 
 <Layout title="Ghost App | Modern beta storytelling">
   <Fragment slot="head">
-    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5d59cae185f37394a689cc2c/52a6f3291daa72dc56ad652af.js");</script>
+    <script id="mcjs">
+      !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5d59cae185f37394a689cc2c/52a6f3291daa72dc56ad652af.js");
+    </script>
   </Fragment>
+
   <header class="sticky top-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
       <div>
         <p class="text-lg font-semibold text-white">Ghost App</p>
         <p class="text-xs uppercase tracking-[0.3em] text-white/60">Mobile companion for publishers</p>
       </div>
-      <button type="button" class="btn btn-lg whitespace-nowrap sm:min-w-40" data-mc-trigger>Join the beta</button>
+      <button type="button" class="btn btn-lg whitespace-nowrap sm:min-w-40" data-mc-trigger>
+        Join the beta
+      </button>
     </div>
   </header>
+
   <section id="hero" class="grid gap-10 pb-16 pt-6 text-white lg:grid-cols-[1.1fr_minmax(0,0.9fr)]">
     <div class="space-y-6">
       <span class="tag">Private beta now recruiting</span>
@@ -90,7 +96,9 @@ const xPosts = fallbackXPosts;
         Draft, review, and publish posts without opening a laptop. Ghost App brings real-time stats, audience signals, and approvals into a minimalist mobile workspace.
       </p>
       <div class="flex flex-wrap gap-4">
-        <button type="button" class="btn btn-lg sm:min-w-48" data-mc-trigger>Join the beta</button>
+        <button type="button" class="btn btn-lg sm:min-w-48" data-mc-trigger>
+          Join the beta
+        </button>
         <a href="#ghost-primer" class="inline-flex items-center gap-2 font-semibold text-white/80 transition hover:text-white">
           New to Ghost? Start here →
         </a>
@@ -125,6 +133,7 @@ const xPosts = fallbackXPosts;
       </div>
     </div>
   </section>
+
   <div class="surface-card mb-10 rounded-3xl border border-amber-400/40 bg-amber-500/10 p-6 text-amber-50">
     <p class="text-xs uppercase tracking-[0.3em] text-amber-200">Disclaimer</p>
     <p class="mt-3 text-base text-amber-50">
@@ -132,6 +141,7 @@ const xPosts = fallbackXPosts;
       without notice, and joining the waitlist does not guarantee cohort placement.
     </p>
   </div>
+
   <section id="snapshot" class="space-y-10 py-16">
     <div class="space-y-4">
       <span class="tag">Ghost App snapshot</span>
@@ -164,9 +174,19 @@ const xPosts = fallbackXPosts;
             </div>
           </div>
         </div>
+      </div>
+      <div class="surface-card flex items-center justify-center overflow-hidden rounded-[2.75rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/0 p-8">
+        <img
+          src={snapshotScreenshot.src}
+          alt="Ghost App content snapshot preview"
+          width={snapshotScreenshot.width}
+          height={snapshotScreenshot.height}
+          loading="lazy"
+          class="max-h-[640px] w-full max-w-sm object-contain drop-shadow-[0_25px_80px_rgba(0,0,0,0.35)]"
+        />
+      </div>
     </div>
   </section>
-
 
   <section id="ghost-primer" class="space-y-8 py-16">
     <div class="surface-card space-y-6 bg-gradient-to-b from-white/10 to-transparent">
@@ -342,14 +362,18 @@ const xPosts = fallbackXPosts;
       document.cookie = "MCPopupClosed=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
       document.cookie = "MCPopupSubscribed=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 
-      require(["mojo/signup-forms/Loader"], function(L) {
-        L.start({
-          baseUrl: "ghostapp.us6.list-manage.com", // from your form action host
-          uuid: MAILCHIMP_UUID,
-          lid: MAILCHIMP_LID,
-          uniqueMethods: true
+      try {
+        require(["mojo/signup-forms/Loader"], function(L) {
+          L.start({
+            baseUrl: "mc.us6.list-manage.com", // Mailchimp popup host
+            uuid: MAILCHIMP_UUID,
+            lid: MAILCHIMP_LID,
+            uniqueMethods: true
+          });
         });
-      });
+      } catch (err) {
+        console.error("Mailchimp popup failed to load", err);
+      }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -362,5 +386,4 @@ const xPosts = fallbackXPosts;
       });
     });
   </script>
-
 </Layout>
