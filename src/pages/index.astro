@@ -347,6 +347,7 @@ const xPosts = fallbackXPosts;
   </script>
 
   <!-- Mailchimp Popup Embed Loader -->
+  <!-- Mailchimp Popup Embed Loader -->
   <script
     type="text/javascript"
     src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js"
@@ -358,12 +359,20 @@ const xPosts = fallbackXPosts;
     const MAILCHIMP_LID  = "f3e83a9de2";                 // from ?id=
 
     function showMailchimpPopup() {
+      console.log("[MC] showMailchimpPopup called");
+
       // Clear Mailchimp cookies so the popup can fire again on click
       document.cookie = "MCPopupClosed=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
       document.cookie = "MCPopupSubscribed=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 
+      if (typeof require === "undefined") {
+        console.error("[MC] require is undefined. embed.js may not have loaded yet.");
+        return;
+      }
+
       try {
         require(["mojo/signup-forms/Loader"], function(L) {
+          console.log("[MC] Loader available, starting popup…");
           L.start({
             baseUrl: "mc.us6.list-manage.com", // Mailchimp popup host
             uuid: MAILCHIMP_UUID,
@@ -372,15 +381,18 @@ const xPosts = fallbackXPosts;
           });
         });
       } catch (err) {
-        console.error("Mailchimp popup failed to load", err);
+        console.error("[MC] Mailchimp popup failed to load", err);
       }
     }
 
     document.addEventListener("DOMContentLoaded", function() {
       const triggers = document.querySelectorAll("[data-mc-trigger]");
+      console.log("[MC] Found triggers:", triggers.length);
+
       triggers.forEach((trigger) => {
         trigger.addEventListener("click", function(e) {
           e.preventDefault();
+          console.log("[MC] Trigger clicked", trigger);
           showMailchimpPopup();
         });
       });
