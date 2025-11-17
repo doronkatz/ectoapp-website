@@ -71,6 +71,15 @@ const xPosts = fallbackXPosts;
   <Fragment slot="head">
     <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5d59cae185f37394a689cc2c/52a6f3291daa72dc56ad652af.js");</script>
   </Fragment>
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <div>
+        <p class="text-lg font-semibold text-white">Ghost App</p>
+        <p class="text-xs uppercase tracking-[0.3em] text-white/60">Mobile companion for publishers</p>
+      </div>
+      <button type="button" class="btn btn-lg whitespace-nowrap sm:min-w-40" data-mc-trigger>Join the beta</button>
+    </div>
+  </header>
   <section id="hero" class="grid gap-10 pb-16 pt-6 text-white lg:grid-cols-[1.1fr_minmax(0,0.9fr)]">
     <div class="space-y-6">
       <span class="tag">Private beta now recruiting</span>
@@ -81,7 +90,7 @@ const xPosts = fallbackXPosts;
         Draft, review, and publish posts without opening a laptop. Ghost App brings real-time stats, audience signals, and approvals into a minimalist mobile workspace.
       </p>
       <div class="flex flex-wrap gap-4">
-        <a href="#waitlist" class="btn btn-lg sm:min-w-48">Join the beta</a>
+        <button type="button" class="btn btn-lg sm:min-w-48" data-mc-trigger>Join the beta</button>
         <a href="#ghost-primer" class="inline-flex items-center gap-2 font-semibold text-white/80 transition hover:text-white">
           New to Ghost? Start here →
         </a>
@@ -163,7 +172,7 @@ const xPosts = fallbackXPosts;
     <div class="surface-card space-y-6 bg-gradient-to-b from-white/10 to-transparent">
       <span class="tag">Ghost primer</span>
       <div class="space-y-4 text-white/80">
-        <h2 class="text-3xl sm:text-4xl text-white">What is Ghost, and why build on it?</h2>
+        <h2 class="text-3xl sm:text-4xl text-white">What is Ghost?</h2>
         <p class="text-lg">
           Ghost is the publishing platform powering modern newsletters, paid memberships, and independent media brands. Ghost App brings that ecosystem to your pocket.
         </p>
@@ -316,4 +325,42 @@ const xPosts = fallbackXPosts;
 
     initLatestFromX();
   </script>
+
+  <!-- Mailchimp Popup Embed Loader -->
+  <script
+    type="text/javascript"
+    src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js"
+    data-dojo-config="usePlainJson: true, isDebug: false">
+  </script>
+
+  <script>
+    const MAILCHIMP_UUID = "a5d59cae185f37394a689cc2c"; // from ?u=
+    const MAILCHIMP_LID  = "f3e83a9de2";                 // from ?id=
+
+    function showMailchimpPopup() {
+      // Clear Mailchimp cookies so the popup can fire again on click
+      document.cookie = "MCPopupClosed=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+      document.cookie = "MCPopupSubscribed=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+
+      require(["mojo/signup-forms/Loader"], function(L) {
+        L.start({
+          baseUrl: "ghostapp.us6.list-manage.com", // from your form action host
+          uuid: MAILCHIMP_UUID,
+          lid: MAILCHIMP_LID,
+          uniqueMethods: true
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const triggers = document.querySelectorAll("[data-mc-trigger]");
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", function(e) {
+          e.preventDefault();
+          showMailchimpPopup();
+        });
+      });
+    });
+  </script>
+
 </Layout>
