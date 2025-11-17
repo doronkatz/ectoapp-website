@@ -155,56 +155,6 @@ const xPosts = fallbackXPosts;
             </div>
           </div>
         </div>
-        <div id="waitlist" class="surface-card space-y-6 bg-gradient-to-b from-white/10 to-transparent p-8 sm:p-10">
-          <div class="space-y-4">
-            <span class="tag">Beta waitlist</span>
-            <h3 class="text-2xl sm:text-3xl text-white">Sign up to be on the waiting list</h3>
-            <p class="text-base text-white/75">
-              Put your name and Apple ID email address below, and we will send you a TestFlight beta when we are ready. We won't use your email
-              address for anything else, or share your email address with anyone.
-            </p>
-          </div>
-
-          <div id="mc_embed_shell" class="space-y-4">
-            <form
-              action="https://ghostapp.us6.list-manage.com/subscribe/post?u=a5d59cae185f37394a689cc2c&amp;id=f3e83a9de2&amp;f_id=00e4c2e1f0"
-              method="post"
-              target="_blank"
-              class="space-y-6"
-            >
-              <div class="space-y-2">
-                <label for="mc-email" class="text-base font-semibold text-white">Email address</label>
-                <input
-                  id="mc-email"
-                  name="EMAIL"
-                  type="email"
-                  required
-                  placeholder="you@example.com"
-                  class="w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-4 text-lg text-white placeholder-white/50 focus:border-primary focus:outline-none focus:ring-0"
-                />
-                <p class="text-sm text-white/70">We'll send your TestFlight invite here.</p>
-              </div>
-              <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                <input type="text" name="b_a5d59cae185f37394a689cc2c_f3e83a9de2" tabindex="-1" value="" />
-              </div>
-              <button type="submit" class="btn btn-lg w-full sm:w-auto">Join the waitlist</button>
-              <p class="text-xs text-white/60">Powered by Intuit Mailchimp</p>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="relative">
-        <div class="surface-card relative flex h-full w-full items-center justify-center overflow-hidden rounded-[2.75rem] border border-white/10 bg-white/5 p-4 sm:p-6">
-          <img
-            src={snapshotScreenshot.src}
-            alt="Ghost App mobile dashboard"
-            width={snapshotScreenshot.width}
-            height={snapshotScreenshot.height}
-            loading="lazy"
-            class="w-full max-w-sm object-contain drop-shadow-[0_25px_80px_rgba(0,0,0,0.35)] max-h-[420px]"
-          />
-        </div>
-      </div>
     </div>
   </section>
 
@@ -244,7 +194,6 @@ const xPosts = fallbackXPosts;
         <p>Independent companion for Ghost publishers.</p>
       </div>
       <div class="flex flex-wrap gap-6">
-        <a href="#waitlist" class="hover:text-white">Request beta access</a>
         <a
           href={X_PROFILE_URL}
           target="_blank"
