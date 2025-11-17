@@ -69,7 +69,7 @@ const xPosts = fallbackXPosts;
 
 <Layout title="Ghost App | Modern beta storytelling">
   <Fragment slot="head">
-    <script id="mcjs">
+    <script id="mcjs" is:inline>
       !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5d59cae185f37394a689cc2c/52a6f3291daa72dc56ad652af.js");
     </script>
   </Fragment>
@@ -236,9 +236,17 @@ const xPosts = fallbackXPosts;
     </div>
   </footer>
 
-  <script type="module">
-    const FEED_ENDPOINT = {JSON.stringify(X_FEED_ENDPOINT)};
-    const X_HANDLE_DISPLAY = {JSON.stringify(X_HANDLE_DISPLAY)};
+  <div
+    id="x-feed-config"
+    hidden
+    data-feed-endpoint={X_FEED_ENDPOINT}
+    data-handle-display={X_HANDLE_DISPLAY}
+  ></div>
+
+  <script type="module" is:inline>
+    const configElement = document.getElementById('x-feed-config');
+    const feedEndpoint = configElement?.dataset.feedEndpoint || '/api/x-feed.json';
+    const handleDisplay = configElement?.dataset.handleDisplay || '@ghostBlogApp';
     const svgNS = 'http://www.w3.org/2000/svg';
 
     const createXLogo = () => {
@@ -269,7 +277,7 @@ const xPosts = fallbackXPosts;
       handle.className = 'inline-flex items-center gap-2 tracking-[0.2em] text-white';
       handle.appendChild(createXLogo());
       const handleText = document.createElement('span');
-      handleText.textContent = X_HANDLE_DISPLAY;
+      handleText.textContent = handleDisplay;
       handle.appendChild(handleText);
       meta.appendChild(handle);
 
@@ -330,7 +338,7 @@ const xPosts = fallbackXPosts;
       }
 
       try {
-        const endpoint = container.dataset.feedEndpoint || FEED_ENDPOINT;
+        const endpoint = container.dataset.feedEndpoint || feedEndpoint;
         const response = await fetch(endpoint);
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
@@ -346,55 +354,122 @@ const xPosts = fallbackXPosts;
     initLatestFromX();
   </script>
 
-  <!-- Mailchimp Popup Embed Loader -->
-  <!-- Mailchimp Popup Embed Loader -->
-  <script
-    type="text/javascript"
-    src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js"
-    data-dojo-config="usePlainJson: true, isDebug: false">
-  </script>
+  <!-- Beta signup modal -->
+  <div
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4"
+    data-mc-modal
+    aria-hidden="true"
+  >
+    <div class="relative w-full max-w-lg rounded-3xl bg-white p-6 text-slate-900 shadow-xl">
+      <button
+        type="button"
+        class="absolute right-3 top-3 rounded-full border border-slate-200 px-2 py-1 text-sm text-slate-500 hover:bg-slate-100"
+        data-mc-close
+        aria-label="Close beta signup"
+      >
+        ✕
+      </button>
+
+      <h2 class="mb-2 text-xl font-semibold text-slate-900">Join the beta</h2>
+      <p class="mb-4 text-sm text-slate-600">
+        Drop your email to get into the next Ghost App beta cohort.
+      </p>
+
+      <!-- Mailchimp embedded form -->
+      <form
+        action="https://ghostapp.us6.list-manage.com/subscribe/post?u=a5d59cae185f37394a689cc2c&amp;id=f3e83a9de2&amp;f_id=00ebc2e1f0"
+        method="post"
+        target="_blank"
+        class="space-y-4"
+        id="mc-embedded-subscribe-form"
+        name="mc-embedded-subscribe-form"
+      >
+        <div class="space-y-1">
+          <label for="mce-EMAIL" class="text-sm font-medium text-slate-800">
+            Email address <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            name="EMAIL"
+            id="mce-EMAIL"
+            required
+            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/40"
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <!-- honeypot field (spam prevention - keep it) -->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+          <input
+            type="text"
+            name="b_a5d59cae185f37394a689cc2c_f3e83a9de2"
+            tabindex="-1"
+            value=""
+          />
+        </div>
+
+        <div class="mt-4 flex items-center justify-between gap-3">
+          <input
+            type="submit"
+            name="subscribe"
+            id="mc-embedded-subscribe"
+            value="Join beta"
+            class="inline-flex cursor-pointer items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+          />
+          <p class="text-xs text-slate-500">
+            Powered by Mailchimp.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script>
-    const MAILCHIMP_UUID = "a5d59cae185f37394a689cc2c"; // from ?u=
-    const MAILCHIMP_LID  = "f3e83a9de2";                 // from ?id=
+    document.addEventListener("DOMContentLoaded", function () {
+      const modal = document.querySelector("[data-mc-modal]");
+      if (!modal) return;
 
-    function showMailchimpPopup() {
-      console.log("[MC] showMailchimpPopup called");
-
-      // Clear Mailchimp cookies so the popup can fire again on click
-      document.cookie = "MCPopupClosed=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-      document.cookie = "MCPopupSubscribed=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-
-      if (typeof require === "undefined") {
-        console.error("[MC] require is undefined. embed.js may not have loaded yet.");
-        return;
-      }
-
-      try {
-        require(["mojo/signup-forms/Loader"], function(L) {
-          console.log("[MC] Loader available, starting popup…");
-          L.start({
-            baseUrl: "mc.us6.list-manage.com", // Mailchimp popup host
-            uuid: MAILCHIMP_UUID,
-            lid: MAILCHIMP_LID,
-            uniqueMethods: true
-          });
-        });
-      } catch (err) {
-        console.error("[MC] Mailchimp popup failed to load", err);
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
       const triggers = document.querySelectorAll("[data-mc-trigger]");
-      console.log("[MC] Found triggers:", triggers.length);
+      const closeButtons = modal.querySelectorAll("[data-mc-close]");
+
+      function openModal() {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeModal() {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        modal.setAttribute("aria-hidden", "true");
+      }
 
       triggers.forEach((trigger) => {
-        trigger.addEventListener("click", function(e) {
-          e.preventDefault();
-          console.log("[MC] Trigger clicked", trigger);
-          showMailchimpPopup();
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          openModal();
         });
+      });
+
+      closeButtons.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+          event.preventDefault();
+          closeModal();
+        });
+      });
+
+      // Click on backdrop closes modal
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Optional: ESC key closes modal
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeModal();
+        }
       });
     });
   </script>
