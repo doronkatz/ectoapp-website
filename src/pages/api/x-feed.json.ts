@@ -8,7 +8,7 @@ interface XPost {
   dateLabel: string;
 }
 
-const X_HANDLE = 'ghostBlogApp';
+const X_HANDLE = 'ectoBlogApp';
 const X_FEED_URL = `https://nitter.net/${X_HANDLE}/rss`;
 
 const decodeHtmlEntities = (value = '') =>
@@ -77,8 +77,8 @@ const fetchLatestXPosts = async (): Promise<XPost[]> => {
 
         return {
           id: guid || link,
-          title: title || 'Update from Ghost App',
-          excerpt: excerpt || 'Stay tuned for the latest Ghost App updates.',
+          title: title || 'Update from Ecto App',
+          excerpt: excerpt || 'Stay tuned for the latest Ecto App updates.',
           link,
           dateLabel: pubDate || 'New',
         };

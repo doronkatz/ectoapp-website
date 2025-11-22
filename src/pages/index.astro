@@ -11,14 +11,14 @@ const heroStats = [
 
 const snapshotPoints = [
   'Check drafts, stats, and comments from any device.',
-  'Push updates straight to your Ghost site without opening a laptop.',
+  'Push updates straight to your Ectosite without opening a laptop.',
   'Keep collaborators aligned with share-ready cards.',
 ];
 
 const primerPoints = [
-  'Ghost is an open-source publishing platform built for newsletters and modern media brands.',
-  'Creators host their sites on Ghost to own their audience, subscriptions, and data.',
-  'Ghost App lets you manage that entire stack from your phone or tablet.',
+  'Ectois an open-source publishing platform built for newsletters and modern media brands.',
+  'Creators host their sites on Ectoto own their audience, subscriptions, and data.',
+  'Ecto App lets you manage that entire stack from your phone or tablet.',
 ];
 
 const trustSignals = [
@@ -35,7 +35,7 @@ interface XPost {
   dateLabel: string;
 }
 
-const X_HANDLE = 'ghostBlogApp';
+const X_HANDLE = 'ectoBlogApp';
 const X_HANDLE_DISPLAY = `@${X_HANDLE}`;
 const X_PROFILE_URL = `https://twitter.com/${X_HANDLE}`;
 const X_FEED_ENDPOINT = '/api/x-feed.json';
@@ -43,8 +43,8 @@ const X_FEED_ENDPOINT = '/api/x-feed.json';
 const fallbackXPosts: XPost[] = [
   {
     id: 'fallback-1',
-    title: 'Shipping threads, beta wins, and Ghost tips land on X first.',
-    excerpt: 'Follow @ghostBlogApp to catch behind-the-scenes updates while we build the mobile companion.',
+    title: 'Shipping threads, beta wins, and Ectotips land on X first.',
+    excerpt: 'Follow @ectoBlogApp to catch behind-the-scenes updates while we build the mobile companion.',
     link: X_PROFILE_URL,
     dateLabel: 'Live feed',
   },
@@ -57,8 +57,8 @@ const fallbackXPosts: XPost[] = [
   },
   {
     id: 'fallback-3',
-    title: 'Have a question? DM @ghostBlogApp on X.',
-    excerpt: 'Reach out for onboarding help, roadmap context, or to share your Ghost setup.',
+    title: 'Have a question? DM @ectoBlogApp on X.',
+    excerpt: 'Reach out for onboarding help, roadmap context, or to share your Ectosetup.',
     link: X_PROFILE_URL,
     dateLabel: 'Live feed',
   },
@@ -67,7 +67,7 @@ const fallbackXPosts: XPost[] = [
 const xPosts = fallbackXPosts;
 ---
 
-<Layout title="Ghost App | Modern beta storytelling">
+<Layout title="Ecto App | Modern beta storytelling">
   <Fragment slot="head">
     <script id="mcjs" is:inline>
       !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5d59cae185f37394a689cc2c/52a6f3291daa72dc56ad652af.js");
@@ -77,7 +77,7 @@ const xPosts = fallbackXPosts;
   <header class="sticky top-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
       <div>
-        <p class="text-lg font-semibold text-white">Ghost App</p>
+        <p class="text-lg font-semibold text-white">Ecto App</p>
         <p class="text-xs uppercase tracking-[0.3em] text-white/60">Mobile companion for publishers</p>
       </div>
       <button type="button" class="btn btn-lg whitespace-nowrap sm:min-w-40" data-mc-trigger>
@@ -90,10 +90,10 @@ const xPosts = fallbackXPosts;
     <div class="space-y-6">
       <span class="tag">Private beta now recruiting</span>
       <h1 class="text-4xl font-semibold leading-tight sm:text-5xl">
-        Manage your Ghost publication anywhere with Ghost App.
+        Manage your Ectopublication anywhere with Ecto App.
       </h1>
       <p class="text-lg text-white/80 sm:text-xl">
-        Draft, review, and publish posts without opening a laptop. Ghost App brings real-time stats, audience signals, and approvals into a minimalist mobile workspace.
+        Draft, review, and publish posts without opening a laptop. Ecto App brings real-time stats, audience signals, and approvals into a minimalist mobile workspace.
       </p>
       <div class="flex flex-wrap gap-4">
         <button type="button" class="btn btn-lg sm:min-w-48" data-mc-trigger>
@@ -106,7 +106,7 @@ const xPosts = fallbackXPosts;
       <p class="text-sm text-white/70">
         Follow
         <a href={X_PROFILE_URL} target="_blank" rel="noreferrer" class="font-semibold text-white hover:text-primary">
-          @ghostBlogApp
+          @ectoBlogApp
         </a>
         on X (Twitter) for beta updates and feature drops.
       </p>
@@ -124,7 +124,7 @@ const xPosts = fallbackXPosts;
       <div class="surface-card relative flex items-center justify-center overflow-hidden rounded-[2.75rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/0 p-8">
         <img
           src={heroScreenshot.src}
-          alt="Ghost App mobile workspace preview"
+          alt="Ecto App mobile workspace preview"
           width={heroScreenshot.width}
           height={heroScreenshot.height}
           loading="lazy"
@@ -137,17 +137,17 @@ const xPosts = fallbackXPosts;
   <div class="surface-card mb-10 rounded-3xl border border-amber-400/40 bg-amber-500/10 p-6 text-amber-50">
     <p class="text-xs uppercase tracking-[0.3em] text-amber-200">Disclaimer</p>
     <p class="mt-3 text-base text-amber-50">
-      Ghost App, its content, and visuals represent work-in-progress beta materials. Features, availability, and onboarding timelines may change
+      Ecto App, its content, and visuals represent work-in-progress beta materials. Features, availability, and onboarding timelines may change
       without notice, and joining the waitlist does not guarantee cohort placement.
     </p>
   </div>
 
   <section id="snapshot" class="space-y-10 py-16">
     <div class="space-y-4">
-      <span class="tag">Ghost App snapshot</span>
+      <span class="tag">Ecto App snapshot</span>
       <h2 class="text-3xl sm:text-4xl">One mobile canvas for creators and editors.</h2>
       <p class="text-lg text-white/75 sm:max-w-3xl">
-        Give visitors a quick read on what Ghost App does before they dive deeper. Swap in your own metrics and visuals later.
+        Give visitors a quick read on what Ecto App does before they dive deeper. Swap in your own metrics and visuals later.
       </p>
     </div>
     <div class="grid gap-8 lg:grid-cols-[1.15fr_minmax(0,0.85fr)]">
@@ -178,7 +178,7 @@ const xPosts = fallbackXPosts;
       <div class="surface-card flex items-center justify-center overflow-hidden rounded-[2.75rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/0 p-8">
         <img
           src={snapshotScreenshot.src}
-          alt="Ghost App content snapshot preview"
+          alt="Ecto App content snapshot preview"
           width={snapshotScreenshot.width}
           height={snapshotScreenshot.height}
           loading="lazy"
@@ -190,11 +190,11 @@ const xPosts = fallbackXPosts;
 
   <section id="ghost-primer" class="space-y-8 py-16">
     <div class="surface-card space-y-6 bg-gradient-to-b from-white/10 to-transparent">
-      <span class="tag">Ghost primer</span>
+      <span class="tag">Ectoprimer</span>
       <div class="space-y-4 text-white/80">
         <h2 class="text-3xl sm:text-4xl text-white">What is Ghost?</h2>
         <p class="text-lg">
-          Ghost is the publishing platform powering modern newsletters, paid memberships, and independent media brands. Ghost App brings that ecosystem to your pocket.
+          Ectois the publishing platform powering modern newsletters, paid memberships, and independent media brands. Ecto App brings that ecosystem to your pocket.
         </p>
       </div>
       <div class="space-y-3">
@@ -219,15 +219,15 @@ const xPosts = fallbackXPosts;
   <footer class="border-t border-white/10 py-10 text-sm text-white/70">
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <p class="text-white font-semibold">Ghost App</p>
-        <p>Independent companion for Ghost publishers.</p>
+        <p class="text-white font-semibold">Ecto App</p>
+        <p>Independent companion for Ectopublishers.</p>
       </div>
       <div class="flex flex-wrap gap-6">
         <a
           href={X_PROFILE_URL}
           target="_blank"
           rel="noreferrer"
-          aria-label="Open @ghostBlogApp on X"
+          aria-label="Open @ectoBlogApp on X"
           class="inline-flex items-center justify-center rounded-full border border-white/20 p-1.5 text-white hover:text-white/80 no-underline"
         >
           <XLogo class="h-4 w-4" />
@@ -246,7 +246,7 @@ const xPosts = fallbackXPosts;
   <script type="module" is:inline>
     const configElement = document.getElementById('x-feed-config');
     const feedEndpoint = configElement?.dataset.feedEndpoint || '/api/x-feed.json';
-    const handleDisplay = configElement?.dataset.handleDisplay || '@ghostBlogApp';
+    const handleDisplay = configElement?.dataset.handleDisplay || '@ectoBlogApp';
     const svgNS = 'http://www.w3.org/2000/svg';
 
     const createXLogo = () => {
@@ -372,7 +372,7 @@ const xPosts = fallbackXPosts;
 
       <h2 class="mb-2 text-xl font-semibold text-slate-900">Join the beta</h2>
       <p class="mb-4 text-sm text-slate-600">
-        Drop your email to get into the next Ghost App beta cohort.
+        Drop your email to get into the next Ecto App beta cohort.
       </p>
 
       <!-- Mailchimp embedded form -->
