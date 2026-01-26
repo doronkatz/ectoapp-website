@@ -1,41 +1,92 @@
-title: "Privacy Policy"
-description: "Our commitment to your privacy and data protection."
+---
+import Layout from '../layouts/Layout.astro';
 
-# Privacy Policy
+const title = "Privacy Policy";
+const description = "Our commitment to your privacy and data protection.";
+---
 
+<Layout title={title} description={description}>
+  <section class="mx-auto max-w-3xl py-16 sm:py-24">
+    <div class="mb-8">
+      <h1 class="text-4xl font-semibold leading-tight text-white mb-2">
+        Privacy Policy
+      </h1>
+      <p class="text-sm text-white/60">
+        Last updated: January 25, 2026
+      </p>
+    </div>
 
-_Last updated: January 25, 2026_
+    <div class="prose prose-invert prose-lg text-white/90 max-w-none">
+      <p>
+        Your privacy is important to us. We are committed to protecting your data
+        and being transparent about our practices.
+      </p>
 
-Your privacy is important to us. We are committed to protecting your data and being transparent about our practices.
+      <h2 class="mt-10 mb-3">No Personal Data Collection</h2>
+      <p>
+        We do <strong>not</strong> collect any personal data from our users. We do
+        not ask for or store your name, email address, or any other personally
+        identifiable information.
+      </p>
 
-## No Personal Data Collection
+      <h2 class="mt-10 mb-3">Anonymous Crash Logs</h2>
+      <p>
+        The only data we collect are anonymous crash logs, which help us improve
+        the stability and performance of our website. These logs do not contain
+        any information that can identify you personally.
+      </p>
 
-We do **not** collect any personal data from our users. We do not ask for or store your name, email address, or any other personally identifiable information.
+      <h2 class="mt-10 mb-3">Information We Collect</h2>
+      <ul>
+        <li>
+          <strong>Anonymous Crash Logs:</strong> Non-identifiable error data used
+          solely to diagnose and fix issues.
+        </li>
+      </ul>
 
-## Anonymous Crash Logs
+      <h2 class="mt-10 mb-3">How We Use Your Information</h2>
+      <ul>
+        <li>To maintain and improve the reliability and security of our website</li>
+      </ul>
 
-The only data we collect are anonymous crash logs, which help us improve the stability and performance of our website. These logs do not contain any information that can identify you personally.
+      <h2 class="mt-10 mb-3">Cookies</h2>
+      <p>
+        We use cookies and similar tracking technologies to enhance your
+        experience. These do not collect personal data. You can control cookie
+        preferences in your browser settings.
+      </p>
 
-## Information We Collect
-- **Anonymous Crash Logs:** We collect only non-identifiable crash and error logs to help us diagnose and fix issues. No personal or sensitive information is included in these logs.
+      <h2 class="mt-10 mb-3">Data Sharing</h2>
+      <p>
+        We do not sell, rent, or share any personal information, as we do not
+        collect any. Anonymous crash logs may be processed by trusted service
+        providers solely to help us improve our website.
+      </p>
 
-## How We Use Your Information
-- To maintain and improve the reliability and security of our website
+      <h2 class="mt-10 mb-3">Data Security</h2>
+      <p>
+        We implement reasonable security measures to protect all data, including
+        anonymous logs. However, no method of transmission over the Internet is
+        100% secure.
+      </p>
 
-## Cookies
-We use cookies and similar tracking technologies to enhance your experience. These do not collect personal data. You can control cookie preferences in your browser settings.
+      <h2 class="mt-10 mb-3">Your Rights</h2>
+      <p>
+        Since we do not collect personal data, there is no personal information
+        to access, correct, or delete. If you have any concerns, please contact us.
+      </p>
 
-## Data Sharing
-We do not sell, rent, or share any personal information, as we do not collect any. Anonymous crash logs may be processed by trusted service providers solely to help us improve our website.
+      <h2 class="mt-10 mb-3">Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. Changes will be
+        posted on this page with an updated effective date.
+      </p>
 
-## Data Security
-We implement reasonable security measures to protect all data, including anonymous logs. However, no method of transmission over the Internet is 100% secure.
-
-## Your Rights
-Since we do not collect personal data, there is no personal information to access, correct, or delete. If you have any concerns, please contact us.
-
-## Changes to This Policy
-We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date.
-
-## Contact Us
-If you have any questions about this Privacy Policy, please contact us at support@example.com.
+      <h2 class="mt-10 mb-3">Contact Us</h2>
+      <p>
+        If you have any questions about this Privacy Policy, please contact us at
+        <a href="mailto:hello@ectoapp.uk">hello@ectoapp.uk</a>.
+      </p>
+    </div>
+  </section>
+</Layout>
