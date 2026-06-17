@@ -1,104 +1,72 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AppStoreBadge from '../components/AppStoreBadge.astro';
 import XLogo from '../components/XLogo.astro';
 import heroScreenshot from '../assets/Screenshot-1-Tilt.png';
 import snapshotScreenshot from '../assets/Screenshot-2-Tilt.png';
+import logoIcon from '../assets/Logo-icon.png';
+
+const APP_STORE_URL = 'https://apps.apple.com/us/app/ecto/id6758278992';
 
 const heroStats = [
-  { label: 'Creators on the list', value: '320+' },
-  { label: 'Average reply time', value: '<12 hrs' },
+  { label: 'Now on the App Store', value: 'Live' },
+  { label: 'Built for Ghost publishers', value: 'iOS' },
 ];
 
 const snapshotPoints = [
-  'Check drafts, stats, and comments from any device.',
-  'Push updates straight to your Ghost CMS website without opening a laptop.',
-  'Keep collaborators aligned with share-ready cards.',
+  'Browse your Ghost posts from a native iPhone workspace.',
+  'Review published stories and drafts without opening a laptop.',
+  'Jump from the mobile app into focused editing and publishing flows.',
 ];
 
 const primerPoints = [
-  'Ghost.org an open-source publishing platform built for newsletters and modern media brands.',
-  'Creators host their sites on Ghost own their audience, subscriptions, and data.',
-  'Ecto App lets you manage that entire stack from your phone or tablet.',
+  'Ghost is an open-source publishing platform built for newsletters and modern media brands.',
+  'Creators host their sites on Ghost and own their audience, subscriptions, and data.',
+  'Ecto brings that publishing workflow to a native iPhone app.',
 ];
-
-const trustSignals = [
-  'Used by indie publishers worldwide',
-  'Built with Ghost’s official APIs',
-  'Manual onboarding for every cohort',
-];
-
-interface XPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  link: string;
-  dateLabel: string;
-}
 
 const X_HANDLE = 'ectoBlogApp';
-const X_HANDLE_DISPLAY = `@${X_HANDLE}`;
 const X_PROFILE_URL = `https://twitter.com/${X_HANDLE}`;
-const X_FEED_ENDPOINT = '/api/x-feed.json';
-
-const fallbackXPosts: XPost[] = [
-  {
-    id: 'fallback-1',
-    title: 'Shipping threads, beta wins, and Ectotips land on X first.',
-    excerpt: 'Follow @ectoBlogApp to catch behind-the-scenes updates while we build the mobile companion.',
-    link: X_PROFILE_URL,
-    dateLabel: 'Live feed',
-  },
-  {
-    id: 'fallback-2',
-    title: 'Release notes and roadmap chatter in one feed.',
-    excerpt: 'We post cohort announcements, feature drops, and integration news on X as they roll out.',
-    link: X_PROFILE_URL,
-    dateLabel: 'Live feed',
-  },
-  {
-    id: 'fallback-3',
-    title: 'Have a question? DM @ectoBlogApp on X.',
-    excerpt: 'Reach out for onboarding help, roadmap context, or to share your Ectosetup.',
-    link: X_PROFILE_URL,
-    dateLabel: 'Live feed',
-  },
-];
-
-const xPosts = fallbackXPosts;
 ---
 
-<Layout title="Ecto App | Modern beta storytelling">
-  <Fragment slot="head">
-    <script id="mcjs" is:inline>
-      !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5d59cae185f37394a689cc2c/52a6f3291daa72dc56ad652af.js");
-    </script>
-  </Fragment>
-
+<Layout
+  title="Ecto App | Ghost publishing from your iPhone"
+  description="Get Ecto on the App Store, the native iPhone companion app for Ghost publishers."
+>
   <header class="sticky top-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-      <div>
-        <p class="text-lg font-semibold text-white">Ecto App</p>
-        <p class="text-xs uppercase tracking-[0.3em] text-white/60">Mobile companion for publishers</p>
+      <div class="flex items-center gap-3">
+        <img
+          src={logoIcon.src}
+          alt=""
+          width="40"
+          height="40"
+          class="h-10 w-10 rounded-xl"
+        />
+        <div>
+          <p class="text-lg font-semibold text-white">Ecto App</p>
+          <p class="text-xs uppercase tracking-[0.3em] text-white/60">Ghost publishing for iPhone</p>
+        </div>
       </div>
-      <button type="button" class="btn btn-lg whitespace-nowrap sm:min-w-40" data-mc-trigger>
-        Join the beta
-      </button>
+      <a href={APP_STORE_URL} target="_blank" rel="noreferrer" class="no-underline" aria-label="Open Ecto on the App Store">
+        <AppStoreBadge compact />
+      </a>
     </div>
   </header>
 
   <section id="hero" class="grid gap-10 pb-16 pt-6 text-white lg:grid-cols-[1.1fr_minmax(0,0.9fr)]">
     <div class="space-y-6">
-      <span class="tag">Private beta now recruiting</span>
+      <span class="tag">Available now on the App Store</span>
       <h1 class="text-4xl font-semibold leading-tight sm:text-5xl">
-        Manage your Ghost blog anywhere with Ecto App.
+        Manage your Ghost blog from your iPhone with Ecto.
       </h1>
       <p class="text-lg text-white/80 sm:text-xl">
-        Draft, review, and publish posts without opening a laptop. 
+        Ecto is a native mobile companion for Ghost publishers. Browse posts, review content, and keep publishing work moving wherever you are.
       </p>
       <div class="flex flex-wrap gap-4">
-        <button type="button" class="btn btn-lg sm:min-w-48" data-mc-trigger>
-          Join the beta
-        </button>
+        <a href={APP_STORE_URL} target="_blank" rel="noreferrer" class="no-underline" aria-label="Open Ecto on the App Store">
+          <AppStoreBadge />
+        </a>
         <a href="#ghost-primer" class="inline-flex items-center gap-2 font-semibold text-white/80 transition hover:text-white">
           New to Ghost? Start here →
         </a>
@@ -108,7 +76,7 @@ const xPosts = fallbackXPosts;
         <a href={X_PROFILE_URL} target="_blank" rel="noreferrer" class="font-semibold text-white hover:text-primary">
           @ectoBlogApp
         </a>
-        on X (Twitter) for beta updates and feature drops.
+        on X for release notes, support, and feature drops.
       </p>
       <div class="grid gap-6 pt-4 text-sm uppercase tracking-wide text-white/70 sm:grid-cols-2">
         {heroStats.map((stat) => (
@@ -124,30 +92,22 @@ const xPosts = fallbackXPosts;
       <div class="surface-card relative flex items-center justify-center overflow-hidden rounded-[2.75rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/0 p-8">
         <img
           src={heroScreenshot.src}
-          alt="Ecto App mobile workspace preview"
+          alt="Ecto iPhone app showing a Ghost posts list"
           width={heroScreenshot.width}
           height={heroScreenshot.height}
-          loading="lazy"
+          loading="eager"
           class="max-h-[640px] w-full max-w-sm object-contain drop-shadow-[0_25px_80px_rgba(0,0,0,0.35)]"
         />
       </div>
     </div>
   </section>
 
-  <div class="surface-card mb-10 rounded-3xl border border-amber-400/40 bg-amber-500/10 p-6 text-amber-50">
-    <p class="text-xs uppercase tracking-[0.3em] text-amber-200">Disclaimer</p>
-    <p class="mt-3 text-base text-amber-50">
-      Ecto App, its content, and visuals represent work-in-progress beta materials. Features, availability, and onboarding timelines may change
-      without notice, and joining the waitlist does not guarantee cohort placement.
-    </p>
-  </div>
-
   <section id="snapshot" class="space-y-10 py-16">
     <div class="space-y-4">
-      <span class="tag">Ecto App snapshot</span>
-      <h2 class="text-3xl sm:text-4xl">One mobile canvas for creators and editors.</h2>
+      <span class="tag">Launch snapshot</span>
+      <h2 class="text-3xl sm:text-4xl">A focused iPhone workspace for Ghost publishers.</h2>
       <p class="text-lg text-white/75 sm:max-w-3xl">
-        Give visitors a quick read on what Ecto App does before they dive deeper. Swap in your own metrics and visuals later.
+        Ecto keeps the publishing surface close at hand, with product screens that reflect the live App Store release.
       </p>
     </div>
     <div class="grid gap-8 lg:grid-cols-[1.15fr_minmax(0,0.85fr)]">
@@ -161,16 +121,16 @@ const xPosts = fallbackXPosts;
           ))}
           <div class="grid gap-4 pt-4 sm:grid-cols-3">
             <div class="rounded-2xl border border-white/15 p-4">
-              <p class="text-3xl font-semibold text-white">2x</p>
-              <p class="text-xs uppercase tracking-[0.3em] text-white/60">Faster draft turnaround</p>
+              <p class="text-3xl font-semibold text-white">Ghost</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-white/60">Publishing backend</p>
             </div>
             <div class="rounded-2xl border border-white/15 p-4">
-              <p class="text-3xl font-semibold text-white">94%</p>
-              <p class="text-xs uppercase tracking-[0.3em] text-white/60">Beta satisfaction</p>
+              <p class="text-3xl font-semibold text-white">iPhone</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-white/60">Native mobile app</p>
             </div>
             <div class="rounded-2xl border border-white/15 p-4">
-              <p class="text-3xl font-semibold text-white">0</p>
-              <p class="text-xs uppercase tracking-[0.3em] text-white/60">Laptop required</p>
+              <p class="text-3xl font-semibold text-white">Live</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-white/60">App Store release</p>
             </div>
           </div>
         </div>
@@ -178,7 +138,7 @@ const xPosts = fallbackXPosts;
       <div class="surface-card flex items-center justify-center overflow-hidden rounded-[2.75rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/0 p-8">
         <img
           src={snapshotScreenshot.src}
-          alt="Ecto App content snapshot preview"
+          alt="Ecto iPhone app showing a published Ghost post"
           width={snapshotScreenshot.width}
           height={snapshotScreenshot.height}
           loading="lazy"
@@ -194,7 +154,7 @@ const xPosts = fallbackXPosts;
       <div class="space-y-4 text-white/80">
         <h2 class="text-3xl sm:text-4xl text-white">What is Ghost?</h2>
         <p class="text-lg">
-          Ectois the publishing platform powering modern newsletters, paid memberships, and independent media brands. Ecto App brings that ecosystem to your pocket.
+          Ghost is the publishing platform powering modern newsletters, paid memberships, and independent media brands. Ecto brings that ecosystem to your pocket.
         </p>
       </div>
       <div class="space-y-3">
@@ -206,12 +166,34 @@ const xPosts = fallbackXPosts;
         ))}
       </div>
       <a
-        href="https://ghost.org"
+        href={APP_STORE_URL}
         target="_blank"
         rel="noreferrer"
         class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80"
       >
-        Explore ghost.org →
+        View Ecto on the App Store →
+      </a>
+    </div>
+  </section>
+
+  <section id="download" class="py-16">
+    <div class="surface-card flex flex-col gap-6 bg-gradient-to-b from-white/10 to-transparent sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex items-center gap-4">
+        <img
+          src={logoIcon.src}
+          alt=""
+          width="64"
+          height="64"
+          class="h-16 w-16 rounded-2xl"
+          loading="lazy"
+        />
+        <div>
+          <p class="text-sm uppercase tracking-[0.3em] text-white/60">Ready to publish from iPhone</p>
+          <h2 class="mt-2 text-2xl font-semibold text-white sm:text-3xl">Ecto is live on the App Store.</h2>
+        </div>
+      </div>
+      <a href={APP_STORE_URL} target="_blank" rel="noreferrer" class="no-underline" aria-label="Open Ecto on the App Store">
+        <AppStoreBadge class="sm:min-w-60" />
       </a>
     </div>
   </section>
@@ -220,9 +202,12 @@ const xPosts = fallbackXPosts;
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p class="text-white font-semibold">Ecto App</p>
-        <p>Independent companion for Ectopublishers.</p>
+        <p>Independent companion for Ghost publishers.</p>
       </div>
       <div class="flex flex-wrap gap-6">
+        <a href={APP_STORE_URL} target="_blank" rel="noreferrer" class="font-semibold text-white no-underline hover:text-primary">
+          App Store
+        </a>
         <a
           href={X_PROFILE_URL}
           target="_blank"
@@ -236,238 +221,4 @@ const xPosts = fallbackXPosts;
     </div>
   </footer>
 
-  <div
-    id="x-feed-config"
-    hidden
-    data-feed-endpoint={X_FEED_ENDPOINT}
-    data-handle-display={X_HANDLE_DISPLAY}
-  ></div>
-
-  <script type="module" is:inline>
-    const configElement = document.getElementById('x-feed-config');
-    const feedEndpoint = configElement?.dataset.feedEndpoint || '/api/x-feed.json';
-    const handleDisplay = configElement?.dataset.handleDisplay || '@ectoBlogApp';
-    const svgNS = 'http://www.w3.org/2000/svg';
-
-    const createXLogo = () => {
-      const svg = document.createElementNS(svgNS, 'svg');
-      svg.setAttribute('class', 'h-4 w-4 text-white');
-      svg.setAttribute('viewBox', '0 0 24 24');
-      svg.setAttribute('role', 'img');
-      svg.setAttribute('aria-hidden', 'true');
-      svg.setAttribute('focusable', 'false');
-
-      const path = document.createElementNS(svgNS, 'path');
-      path.setAttribute('fill', 'currentColor');
-      path.setAttribute('d', 'M1.5 0h5.7l5 7.7L16.8 0h5.7l-8.2 11.1L24 24h-5.7l-5-7.8L7.2 24H1.5l8.4-11.3L1.5 0z');
-      svg.appendChild(path);
-
-      return svg;
-    };
-
-    const createPostCard = (post) => {
-      const article = document.createElement('article');
-      article.className = 'surface-card flex flex-col gap-4 bg-gradient-to-b from-white/10 to-transparent p-6';
-      article.id = post.id;
-
-      const meta = document.createElement('div');
-      meta.className = 'flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/60';
-
-      const handle = document.createElement('span');
-      handle.className = 'inline-flex items-center gap-2 tracking-[0.2em] text-white';
-      handle.appendChild(createXLogo());
-      const handleText = document.createElement('span');
-      handleText.textContent = handleDisplay;
-      handle.appendChild(handleText);
-      meta.appendChild(handle);
-
-      if (post.dateLabel) {
-        const time = document.createElement('time');
-        time.className = 'text-white/60';
-        time.textContent = post.dateLabel;
-        meta.appendChild(time);
-      }
-
-      const content = document.createElement('div');
-      content.className = 'space-y-3';
-
-      const title = document.createElement('p');
-      title.className = 'text-xl font-semibold text-white';
-      title.textContent = post.title;
-      const excerpt = document.createElement('p');
-      excerpt.className = 'text-sm text-white/70';
-      excerpt.textContent = post.excerpt;
-      content.append(title, excerpt);
-
-      const link = document.createElement('a');
-      link.className = 'inline-flex w-fit items-center gap-2 text-sm font-semibold text-primary no-underline hover:text-primary/80';
-      link.href = post.link;
-      link.target = '_blank';
-      link.rel = 'noreferrer';
-      link.textContent = 'Read on X →';
-
-      article.append(meta, content, link);
-      return article;
-    };
-
-    const renderLatestFromX = (container, posts) => {
-      if (!Array.isArray(posts) || !posts.length) {
-        return;
-      }
-
-      const fragment = document.createDocumentFragment();
-      posts.forEach((post) => {
-        if (!post || !post.link) {
-          return;
-        }
-        fragment.appendChild(createPostCard(post));
-      });
-
-      if (!fragment.childNodes.length) {
-        return;
-      }
-
-      container.innerHTML = '';
-      container.appendChild(fragment);
-    };
-
-    const initLatestFromX = async () => {
-      const container = document.querySelector('[data-x-feed]');
-      if (!container) {
-        return;
-      }
-
-      try {
-        const endpoint = container.dataset.feedEndpoint || feedEndpoint;
-        const response = await fetch(endpoint);
-        if (!response.ok) {
-          throw new Error(`Request failed with status ${response.status}`);
-        }
-
-        const payload = await response.json();
-        renderLatestFromX(container, payload?.posts);
-      } catch (error) {
-        console.error('Failed to load Latest from X posts', error);
-      }
-    };
-
-    initLatestFromX();
-  </script>
-
-  <!-- Beta signup modal -->
-  <div
-    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4"
-    data-mc-modal
-    aria-hidden="true"
-  >
-    <div class="relative w-full max-w-lg rounded-3xl bg-white p-6 text-slate-900 shadow-xl">
-      <button
-        type="button"
-        class="absolute right-3 top-3 rounded-full border border-slate-200 px-2 py-1 text-sm text-slate-500 hover:bg-slate-100"
-        data-mc-close
-        aria-label="Close beta signup"
-      >
-        ✕
-      </button>
-
-      <h2 class="mb-2 text-xl font-semibold text-slate-900">Join the beta</h2>
-      <p class="mb-4 text-sm text-slate-600">
-        Drop your email to get into the next Ecto App beta cohort.
-      </p>
-
-      <!-- Mailchimp embedded form -->
-      <form
-        action="https://ghostapp.us6.list-manage.com/subscribe/post?u=a5d59cae185f37394a689cc2c&amp;id=f3e83a9de2&amp;f_id=00ebc2e1f0"
-        method="post"
-        target="_blank"
-        class="space-y-4"
-        id="mc-embedded-subscribe-form"
-        name="mc-embedded-subscribe-form"
-      >
-        <div class="space-y-1">
-          <label for="mce-EMAIL" class="text-sm font-medium text-slate-800">
-            Email address <span class="text-red-500">*</span>
-          </label>
-          <input
-            type="email"
-            name="EMAIL"
-            id="mce-EMAIL"
-            required
-            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/40"
-            placeholder="you@example.com"
-          />
-        </div>
-
-        <!-- honeypot field (spam prevention - keep it) -->
-        <div style="position: absolute; left: -5000px;" aria-hidden="true">
-          <input
-            type="text"
-            name="b_a5d59cae185f37394a689cc2c_f3e83a9de2"
-            tabindex="-1"
-            value=""
-          />
-        </div>
-
-        <div class="mt-4 flex items-center justify-between gap-3">
-          <input
-            type="submit"
-            name="subscribe"
-            id="mc-embedded-subscribe"
-            value="Join beta"
-            class="inline-flex cursor-pointer items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
-          />
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const modal = document.querySelector("[data-mc-modal]");
-      if (!modal) return;
-
-      const triggers = document.querySelectorAll("[data-mc-trigger]");
-      const closeButtons = modal.querySelectorAll("[data-mc-close]");
-
-      function openModal() {
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-        modal.setAttribute("aria-hidden", "false");
-      }
-
-      function closeModal() {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-        modal.setAttribute("aria-hidden", "true");
-      }
-
-      triggers.forEach((trigger) => {
-        trigger.addEventListener("click", (event) => {
-          event.preventDefault();
-          openModal();
-        });
-      });
-
-      closeButtons.forEach((btn) => {
-        btn.addEventListener("click", (event) => {
-          event.preventDefault();
-          closeModal();
-        });
-      });
-
-      // Click on backdrop closes modal
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          closeModal();
-        }
-      });
-
-      // Optional: ESC key closes modal
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closeModal();
-        }
-      });
-    });
-  </script>
 </Layout>

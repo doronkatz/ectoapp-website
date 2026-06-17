@@ -1,17 +1,19 @@
 ---
 import XLogo from '../components/XLogo.astro';
+
+const APP_STORE_URL = 'https://apps.apple.com/us/app/ecto/id6758278992';
 ---
 
 <footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
     <p class="text-sm">
-        <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8">Astro on Netlify</a>
+        <a href={APP_STORE_URL} target="_blank" rel="noreferrer" class="decoration-dashed text-primary underline-offset-8">App Store</a>
         <span class="mx-2 text-white/40">|</span>
         <a href="/privacy-policy" class="decoration-dashed text-primary underline-offset-8">Privacy Policy</a>
     </p>
     <p class="pt-4 text-sm text-white/80">
         Follow us on
         <a
-            href="https://twitter.com/EctoGhostApp"
+            href="https://twitter.com/ectoBlogApp"
             target="_blank"
             rel="noreferrer"
             aria-label="Open @ectoBlogApp on X"
